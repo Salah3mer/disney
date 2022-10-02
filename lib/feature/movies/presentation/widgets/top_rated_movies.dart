@@ -1,6 +1,7 @@
 import 'package:disney/core/components/components.dart';
 import 'package:disney/core/services/service_locator.dart' as di;
 import 'package:disney/feature/details/presentation/cubits/movie_details_cubit/movie_details_cubit.dart';
+import 'package:disney/feature/details/presentation/screens/movie_details_screen.dart';
 import 'package:disney/feature/movies/presentation/cubit/top_rated_movies_cubit/top_rated_movies_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,8 @@ class TopRatedMovies extends StatelessWidget {
                 itemBuilder: (context, index) =>
                     InkWell(
                       onTap: (){
-                        di.sl<MovieDetailsCubit>().getMovieDetails(state.topRatedMovies[index].id);
+
+                        Navigator.push(context, MaterialPageRoute(builder:(context)=> MovieDetailsScreen(id :state.topRatedMovies[index].id)));
                       },
                         child: bulidMovieCard(movie: state.topRatedMovies, index: index)),
                 separatorBuilder: (context, index) => const SizedBox(

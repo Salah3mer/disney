@@ -12,11 +12,11 @@ class MovieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      //extendBodyBehindAppBar: true,
       appBar: AppBar(
         systemOverlayStyle:
-        const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        backgroundColor: AppConstans.backgrondColor,
+       const  SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+        backgroundColor:AppConstans.backgrondColor,
         title: const SizedBox(
           height: 50,
           child:  Image(
@@ -55,7 +55,7 @@ class MovieScreen extends StatelessWidget {
                         child: Text(
                           'See More',
                           style:
-                              TextStyle(color:Colors.grey.shade400, fontSize: 16),
+                              TextStyle(color:Colors.grey.shade500, fontSize: 16),
                         ))
                   ],
                 ),
@@ -78,7 +78,7 @@ class MovieScreen extends StatelessWidget {
                         child: Text(
                           'See More',
                           style:
-                              TextStyle(color: Colors.grey.shade400, fontSize: 16),
+                              TextStyle(color:Colors.grey.shade500, fontSize: 16),
                         ))
                   ],
                 ),

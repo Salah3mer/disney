@@ -5,7 +5,6 @@ import 'package:disney/core/utils/api_constans.dart';
 import 'package:disney/feature/movies/data/models/movie_model.dart';
 import 'package:disney/feature/movies/data/models/genres_model.dart';
 
-
 abstract class BaseMovieRemoteDataSorce {
   Future<List<MovieModel>> getNowPlayingMovies();
 

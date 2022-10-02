@@ -2,8 +2,12 @@
 import 'package:disney/feature/details/data/data_sources/movie_details_remote_datasorce.dart';
 import 'package:disney/feature/details/data/repositories/movie_details_repsitory.dart';
 import 'package:disney/feature/details/domain/repositories/base_movie_details_repository.dart';
+import 'package:disney/feature/details/domain/usecases/get_movie_cast_usecase.dart';
 import 'package:disney/feature/details/domain/usecases/get_movie_details_usecase.dart';
+import 'package:disney/feature/details/domain/usecases/get_similer_movies_usecase.dart';
+import 'package:disney/feature/details/presentation/cubits/movie_cast_cubit/movie_cast_cubit.dart';
 import 'package:disney/feature/details/presentation/cubits/movie_details_cubit/movie_details_cubit.dart';
+import 'package:disney/feature/details/presentation/cubits/similer_movies_cubit/similer_movies_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/popular_movie_cubit/movies_cubit.dart';
 import 'package:disney/feature/movies/data/datasources/movie_remote_data_sorce.dart';
 import 'package:disney/feature/movies/data/repositories/movies_repository.dart';
@@ -28,12 +32,16 @@ class ServiceLocator{
     sl.registerFactory(() => NowPlayingMovieCubit(getNowPlayingMoviesUsecase: sl()));
     sl.registerFactory(() => GenresCubit(genresUsecase: sl() ));
     sl.registerFactory(() => MovieDetailsCubit(getMovieDetailsUsecase: sl() ));
+    sl.registerFactory(() => MovieCastCubit(getMovieCastUseCase:  sl() ));
+    sl.registerFactory(() => SimilerMoviesCubit(  getSimilerMoviesUsecase: sl() ));
     ///UseCases
     sl.registerLazySingleton(() => GetNowPlayingMoviesUsecase(sl()));
     sl.registerLazySingleton(() => GetPopularMoviesUsecase(sl()));
     sl.registerLazySingleton(() => GetNowTopRatedMoviesUsecase(sl()));
     sl.registerLazySingleton(() => GetGenresUsecase(sl()));
     sl.registerLazySingleton(() => GetMovieDetailsUsecase(sl()));
+    sl.registerLazySingleton(() => GetMovieCastUseCase(sl()));
+    sl.registerLazySingleton(() => GetSimilerMoviesUsecase(sl()));
     ///Repository
     sl.registerLazySingleton<BaseMoviesRepository>(() => MoviesRepository(sl()));
     sl.registerLazySingleton<BaseMovieDetailsRepostory>(() => MoveiDetailsRepsitory(sl()));

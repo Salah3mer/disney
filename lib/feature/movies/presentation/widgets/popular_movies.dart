@@ -1,4 +1,5 @@
 import 'package:disney/core/components/components.dart';
+import 'package:disney/feature/details/presentation/screens/movie_details_screen.dart';
 import 'package:disney/feature/movies/presentation/cubit/popular_movie_cubit/movies_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/popular_movie_cubit/movies_state.dart';
 
@@ -20,7 +21,11 @@ class PopularMovies extends StatelessWidget {
             child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) =>
-                    bulidMovieCard(movie: state.popularMovies, index: index),
+                    InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder:(context)=> MovieDetailsScreen(id :state.popularMovies[index].id)));
+                        },
+                        child: bulidMovieCard(movie: state.popularMovies, index: index)),
                 separatorBuilder: (context, index) => const SizedBox(
                       width: 10,
                     ),

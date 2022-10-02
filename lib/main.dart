@@ -1,5 +1,6 @@
 import 'package:disney/core/bloc_observer.dart';
 import 'package:disney/core/services/service_locator.dart' as di;
+import 'package:disney/feature/details/presentation/cubits/movie_details_cubit/movie_details_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/genres_cubit/genres_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/now_playing_movie_cubit/now_playing_movie_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/popular_movie_cubit/movies_cubit.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<NowPlayingMovieCubit>()..getNowPlayingMovies()),
         BlocProvider(create: (context) => di.sl<GenresCubit>()..getGenres()),
         BlocProvider(create: (context) => di.sl<PopularMoviesCubit>()..getPopularMovies()),
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
