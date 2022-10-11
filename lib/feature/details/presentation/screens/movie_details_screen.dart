@@ -9,6 +9,7 @@ import 'package:disney/feature/details/presentation/widgets/movie_desc_widget.da
 import 'package:disney/feature/details/presentation/widgets/poster.dart';
 import 'package:disney/feature/details/presentation/widgets/similer_movies_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
@@ -31,8 +32,18 @@ class MovieDetailsScreen extends StatelessWidget {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: AppConstans.backgrondColor,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
+        appBar:  AppBar(
+          backgroundColor:Colors.transparent,
+          title: const SizedBox(
+            height: 50,
+            child:  Image(
+                image: AssetImage(
+                    'assets/images/logo.png'),
+                fit: BoxFit.fitWidth),
+          ),
+
+          centerTitle: true,
+          elevation: 0,
         ),
         body: SingleChildScrollView(
           child: Column(

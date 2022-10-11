@@ -8,21 +8,20 @@ part 'now_playing_movie_state.dart';
 
 class NowPlayingMovieCubit extends Cubit<NowPlayingMovieState> {
   final GetNowPlayingMoviesUsecase getNowPlayingMoviesUsecase;
-  NowPlayingMovieCubit({required this.getNowPlayingMoviesUsecase}) : super(NowPlayingMovieInitial());
 
-   Future<void> getNowPlayingMovies() async {
+  NowPlayingMovieCubit({required this.getNowPlayingMoviesUsecase})
+      : super(NowPlayingMovieInitial());
+  int page = 1;
+
+  Future<void> getNowPlayingMovies() async {
     emit(GetNowPlayingMoviesLoadingState());
-    final resulte = await getNowPlayingMoviesUsecase.excute();
-    emit(resulte.fold(
-            (failure) => GetNowPlayingMoviesErrorState(failure.errorMassage),
-            (movie) => GetNowPlayingMoviesSuccessState(nowPlayingMovies:  movie)
-       ));
+        await getNowPlayingMoviesUsecase.excute(page: page).then((resulte) {
+      page++;
+      emit(resulte.fold(
+              (failure) => GetNowPlayingMoviesErrorState(failure.errorMassage),
+              (movie) => GetNowPlayingMoviesSuccessState(nowPlayingMovies: movie)));
+    });
 
   }
 
-  int currentIndex =0;
-   void changeIndex(int index){
-     currentIndex = index;
-     emit(Changed());
-   }
 }

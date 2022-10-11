@@ -1,3 +1,4 @@
+import 'package:disney/feature/movies/domain/entities/movie.dart';
 import 'package:disney/feature/movies/domain/usecases/get_popular_movies.dart';
 import 'package:disney/feature/movies/presentation/cubit/popular_movie_cubit/movies_state.dart';
 
@@ -9,12 +10,20 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
   PopularMoviesCubit(
     this.getPopularMoviesUsecase,
   ) : super(MoviesInitialState());
-
+  int page=1 ;
+  List<Movie> allMovies =[];
   Future<void> getPopularMovies() async {
-    emit(GetPopularMoviesLoadingState());
-    final resulte = await getPopularMoviesUsecase.excute();
-    emit(resulte.fold(
-        (failure) => GetPopularMoviesErrorState(failure.errorMassage),
-        (movie) => GetPopularMoviesSuccessState(popularMovies: movie)));
+      emit(GetPopularMoviesLoadingState());
+
+     await getPopularMoviesUsecase.excute(page:page).then((resulte) {
+      page++;
+      emit(resulte.fold(
+              (failure) => GetPopularMoviesErrorState(failure.errorMassage),
+              (movie) {
+              allMovies.addAll(movie);
+                return GetPopularMoviesSuccessState(popularMovies:movie);
+              }));
+    });
+
   }
 }

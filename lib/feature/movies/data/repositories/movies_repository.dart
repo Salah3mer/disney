@@ -12,8 +12,8 @@ class MoviesRepository extends BaseMoviesRepository{
   @override
 
   @override
-  Future<Either<Failure, List<Movie>>> getPopularMovies()  async {
-    final resulte = await  baseMovieRemoteDataSorce.getPopularMovies();
+  Future<Either<Failure, List<Movie>>> getPopularMovies({required int page})  async {
+    final resulte = await  baseMovieRemoteDataSorce.getPopularMovies(page: page);
     try{
       return Right(resulte);
     } on ServerException catch(Failure){
@@ -22,8 +22,8 @@ class MoviesRepository extends BaseMoviesRepository{
   }
 
   @override
-  Future<Either<Failure, List<Movie>>> getTopRatedMovies() async{
-   final  resulte = await baseMovieRemoteDataSorce.getTopRatedMovies();
+  Future<Either<Failure, List<Movie>>> getTopRatedMovies({required int page}) async{
+   final  resulte = await baseMovieRemoteDataSorce.getTopRatedMovies(page: page);
    try{
      return Right(resulte);
    }on ServerException catch(Failure){
@@ -32,8 +32,8 @@ class MoviesRepository extends BaseMoviesRepository{
   }
 
   @override
-  Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async{
-    final resulte = await baseMovieRemoteDataSorce.getNowPlayingMovies();
+  Future<Either<Failure, List<Movie>>> getNowPlayingMovies({required int page}) async{
+    final resulte = await baseMovieRemoteDataSorce.getNowPlayingMovies(page: page);
     try{
       return Right(resulte);
     }on ServerException catch(Failure){

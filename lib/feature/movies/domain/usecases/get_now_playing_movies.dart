@@ -7,7 +7,7 @@ import 'package:disney/feature/movies/domain/repositories/base_movies_repository
 class GetNowPlayingMoviesUsecase {
   final BaseMoviesRepository baseMoviesRepository;
   GetNowPlayingMoviesUsecase(this.baseMoviesRepository);
-  Future<Either<Failure, List<Movie>>> excute() async {
-    return await baseMoviesRepository.getNowPlayingMovies();
+  Future<Either<Failure, List<Movie>>> excute({required int page}) async {
+    return await baseMoviesRepository.getNowPlayingMovies(page: page);
   }
 }

@@ -14,8 +14,8 @@ class MovieStateWidget extends StatelessWidget {
         return Container(
           margin: EdgeInsets.all(15),
           decoration: BoxDecoration(
-              border: Border.symmetric(horizontal: BorderSide(width: .5,color: Colors.grey))
-          ),
+              border: Border.symmetric(
+                  horizontal: BorderSide(width: .5, color: Colors.grey))),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Row(
@@ -36,7 +36,7 @@ class MovieStateWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            state.movieDetails.voteAverage.toString(),
+                            ' ${double.parse((state.movieDetails.voteAverage).toStringAsFixed(1))}',
                             style: TextStyle(
                                 color: Colors.white.withOpacity(.7),
                                 fontSize: 12,

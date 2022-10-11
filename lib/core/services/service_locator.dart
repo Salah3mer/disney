@@ -19,6 +19,11 @@ import 'package:disney/feature/movies/domain/usecases/get_top_rated_movies.dart'
 import 'package:disney/feature/movies/presentation/cubit/genres_cubit/genres_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/now_playing_movie_cubit/now_playing_movie_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/top_rated_movies_cubit/top_rated_movies_cubit.dart';
+import 'package:disney/feature/search/data/datasources/search_remote_datasorce.dart';
+import 'package:disney/feature/search/data/repositories/search_repository.dart';
+import 'package:disney/feature/search/domain/repositories/base_search_repository.dart';
+import 'package:disney/feature/search/domain/usecases/search_usecase.dart';
+import 'package:disney/feature/search/presentation/cubits/search_cubit/search_cubit.dart';
 
 import 'package:get_it/get_it.dart';
 
@@ -34,6 +39,7 @@ class ServiceLocator{
     sl.registerFactory(() => MovieDetailsCubit(getMovieDetailsUsecase: sl() ));
     sl.registerFactory(() => MovieCastCubit(getMovieCastUseCase:  sl() ));
     sl.registerFactory(() => SimilerMoviesCubit(  getSimilerMoviesUsecase: sl() ));
+    sl.registerFactory(() => SearchCubit(  getSearchUsecase: sl() ));
     ///UseCases
     sl.registerLazySingleton(() => GetNowPlayingMoviesUsecase(sl()));
     sl.registerLazySingleton(() => GetPopularMoviesUsecase(sl()));
@@ -42,12 +48,15 @@ class ServiceLocator{
     sl.registerLazySingleton(() => GetMovieDetailsUsecase(sl()));
     sl.registerLazySingleton(() => GetMovieCastUseCase(sl()));
     sl.registerLazySingleton(() => GetSimilerMoviesUsecase(sl()));
+    sl.registerLazySingleton(() => GetSearchUsecase(sl()));
     ///Repository
     sl.registerLazySingleton<BaseMoviesRepository>(() => MoviesRepository(sl()));
     sl.registerLazySingleton<BaseMovieDetailsRepostory>(() => MoveiDetailsRepsitory(sl()));
+    sl.registerLazySingleton<BaseSearchRepository>(() => SearchRepositor(baseSearchRemoteDataSorce: sl()));
     ///BaseRemoteDataSorse
     sl.registerLazySingleton<BaseMovieRemoteDataSorce>(() => MovieRemoteDataSorce());
     sl.registerLazySingleton<BaseMovieDetailsRemoteDatasorce>(() => MovieDetailsRemoteDatasorce());
+    sl.registerLazySingleton<BaseSearchRemoteDataSorce>(() => SearchRemoteDataSorce());
   }
 
 
