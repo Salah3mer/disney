@@ -19,7 +19,7 @@ class MoveiDetailsRepsitory implements BaseMovieDetailsRepostory {
           await baseMovieDetailsRemoteDatasorce.getMovieDetails(movieId);
       return right(resulte);
     } on ServerException catch (Failure) {
-      return Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+      return Left(ServerFailure());
     }
   }
 
@@ -30,7 +30,7 @@ class MoveiDetailsRepsitory implements BaseMovieDetailsRepostory {
           await baseMovieDetailsRemoteDatasorce.getMovieCast(movieId);
       return right(resulte);
     } on ServerException catch (Failure) {
-      return Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+      return Left(ServerFailure());
     }
   }
 
@@ -41,7 +41,7 @@ class MoveiDetailsRepsitory implements BaseMovieDetailsRepostory {
           await baseMovieDetailsRemoteDatasorce.getSimilerMovies(movieId);
       return right(resulte);
     } on ServerException catch (Failure) {
-      return Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+      return Left(ServerFailure());
     }
   }
 }

@@ -27,12 +27,10 @@ class GetNowPlayingMoviesSuccessState extends NowPlayingMovieState {
 }
 
 class GetNowPlayingMoviesErrorState extends NowPlayingMovieState {
-  final String msg;
 
-  const GetNowPlayingMoviesErrorState(this.msg);
 
   @override
-  List<Object> get props => [msg];
+  List<Object> get props => [];
 
 }
 

@@ -6,7 +6,7 @@ import 'package:disney/feature/search/domain/repositories/base_search_repository
 class GetSearchUsecase {
   final BaseSearchRepository baseSearchRepository;
   GetSearchUsecase(this.baseSearchRepository);
-  Future<Either<Failure, List<Movie>>> excute(String name) async {
-    return await baseSearchRepository.search(name);
+  Future<Either<Failure, List<Movie>>> excute(String name,int page) async {
+    return await baseSearchRepository.search(name,page);
   }
 }

@@ -1,5 +1,6 @@
 part of 'similer_movies_cubit.dart';
 
+
 abstract class SimilerMoviesState extends Equatable {
   const SimilerMoviesState();
   @override

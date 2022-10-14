@@ -39,51 +39,7 @@ class SeeAllMoviesScreen extends StatelessWidget {
             {
               return Padding(
                 padding: EdgeInsets.all(15),
-                child: SmartRefresher(
-                    footer: CustomFooter(
-                      builder: (BuildContext context, LoadStatus? mode) {
-                        Widget body;
-                        if (mode == LoadStatus.loading) {
-                          body = const CircularProgressIndicator();
-                        } else if (mode == LoadStatus.idle) {
-                          body = const Text("");
-                        } else if (mode == LoadStatus.failed) {
-                          body = const Text("Load Failed!Click retry!");
-                        } else if (mode == LoadStatus.canLoading) {
-                          body = const Text("release to load more");
-                        } else if (mode == LoadStatus.noMore) {
-                          body = Center(child: const Text("No more data"));
-                        } else {
-                          body = const Text("Load more");
-                        }
-                        return SizedBox(
-                          height: 55.0,
-                          child: Center(child: body),
-                        );
-                      },
-                    ),
-                    onRefresh: () async {
-                      await Future.delayed(const Duration(milliseconds: 1000));
-                      _refreshController.refreshCompleted();
-                    },
-                    onLoading: () async {
-                      await Future.delayed(const Duration(milliseconds: 1000));
-                      // ignore: use_build_context_synchronously
-                      BlocProvider.of<PopularMoviesCubit>(context)
-                          .getPopularMovies();
-                      _refreshController.loadComplete();
-                    },
-                    enablePullUp: true,
-                    enablePullDown: true,
-                    controller: _refreshController,
-                    child: SingleChildScrollView(
-                        controller: scroll,
-                        child: Column(children: [
-                          bulidGridCard(
-                              BlocProvider.of<PopularMoviesCubit>(context)
-                                  .allMovies,
-                              context),
-                        ]))),
+                child: customFooter(),
               );
             }
           }));
@@ -108,30 +64,7 @@ class SeeAllMoviesScreen extends StatelessWidget {
           return Padding(
               padding: EdgeInsets.all(15),
               child: SmartRefresher(
-                footer: CustomFooter(
-                  builder: (BuildContext context, LoadStatus? mode) {
-                    Widget body;
-                    if (mode == LoadStatus.loading) {
-                      body = const CircularProgressIndicator(
-                        color: Colors.brown,
-                      );
-                    } else if (mode == LoadStatus.idle) {
-                      body = const Text("");
-                    } else if (mode == LoadStatus.failed) {
-                      body = const Text("Load Failed!Click retry!");
-                    } else if (mode == LoadStatus.canLoading) {
-                      body = const Text("release to load more");
-                    } else if (mode == LoadStatus.noMore) {
-                      body = Center(child: const Text("No more data"));
-                    } else {
-                      body = const Text("Load more");
-                    }
-                    return SizedBox(
-                      height: 55.0,
-                      child: Center(child: body),
-                    );
-                  },
-                ),
+                footer: customFooter(),
                 onRefresh: () async {
                   await Future.delayed(const Duration(milliseconds: 1000));
                   _refreshController.refreshCompleted();

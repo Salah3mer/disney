@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:disney/core/utils/api_constans.dart';
@@ -47,8 +46,12 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
                     scrollDirection: Axis.horizontal,
                   ),
                   itemBuilder: (context, index, i) => InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder:(context)=> MovieDetailsScreen(id :state.nowPlayingMovies[index].id)));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MovieDetailsScreen(
+                                  id: state.nowPlayingMovies[index].id)));
                     },
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height / 2,
@@ -84,7 +87,8 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
                               errorWidget: (context, url, error) =>
                                   const Icon(Icons.error),
                               imageBuilder: (context, imageProvider) => Image(
-                                height: MediaQuery.of(context).size.height / 1.5,
+                                height:
+                                    MediaQuery.of(context).size.height / 1.5,
                                 image: imageProvider,
                                 fit: BoxFit.cover,
                               ),
@@ -133,8 +137,8 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
                                 children: [
                                   RatingBarIndicator(
                                     itemCount: 5,
-                                    rating: state
-                                            .nowPlayingMovies[index].voteAverage /
+                                    rating: state.nowPlayingMovies[index]
+                                            .voteAverage /
                                         2,
                                     itemBuilder: (context, index) => Icon(
                                       Icons.star,
@@ -173,11 +177,12 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
           );
         } else {
           return Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[200]!,
-            child: SizedBox(
-                height: MediaQuery.of(context).size.height / 1.5,
-         ),
+            baseColor: Colors.grey[800]!,
+            highlightColor: Colors.grey[700]!,
+            child: Container(
+              color: Colors.black,
+              height: MediaQuery.of(context).size.height / 1.5,
+            ),
           );
         }
       },

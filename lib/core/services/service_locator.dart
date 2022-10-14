@@ -1,4 +1,6 @@
 
+import 'package:dio/dio.dart';
+import 'package:disney/core/network/dio_helper.dart';
 import 'package:disney/feature/details/data/data_sources/movie_details_remote_datasorce.dart';
 import 'package:disney/feature/details/data/repositories/movie_details_repsitory.dart';
 import 'package:disney/feature/details/domain/repositories/base_movie_details_repository.dart';
@@ -54,9 +56,16 @@ class ServiceLocator{
     sl.registerLazySingleton<BaseMovieDetailsRepostory>(() => MoveiDetailsRepsitory(sl()));
     sl.registerLazySingleton<BaseSearchRepository>(() => SearchRepositor(baseSearchRemoteDataSorce: sl()));
     ///BaseRemoteDataSorse
-    sl.registerLazySingleton<BaseMovieRemoteDataSorce>(() => MovieRemoteDataSorce());
-    sl.registerLazySingleton<BaseMovieDetailsRemoteDatasorce>(() => MovieDetailsRemoteDatasorce());
-    sl.registerLazySingleton<BaseSearchRemoteDataSorce>(() => SearchRemoteDataSorce());
+    sl.registerLazySingleton<BaseMovieRemoteDataSorce>(() => MovieRemoteDataSorce(dioHelper: sl()));
+    sl.registerLazySingleton<BaseMovieDetailsRemoteDatasorce>(() => MovieDetailsRemoteDatasorce(dioHelper: sl()));
+    sl.registerLazySingleton<BaseSearchRemoteDataSorce>(() => SearchRemoteDataSorce(dioHelper: sl()));
+    ///core
+    sl.registerLazySingleton(() => DioHelper(dio: sl()));
+    ///extirnal
+    sl.registerLazySingleton(() => Dio());
+
+    sl.registerLazySingleton(() =>
+        LogInterceptor(responseBody: true, error: true),);
   }
 
 

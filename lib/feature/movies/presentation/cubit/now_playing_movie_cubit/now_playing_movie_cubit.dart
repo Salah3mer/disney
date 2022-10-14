@@ -18,7 +18,7 @@ class NowPlayingMovieCubit extends Cubit<NowPlayingMovieState> {
         await getNowPlayingMoviesUsecase.excute(page: page).then((resulte) {
       page++;
       emit(resulte.fold(
-              (failure) => GetNowPlayingMoviesErrorState(failure.errorMassage),
+              (failure) => GetNowPlayingMoviesErrorState(),
               (movie) => GetNowPlayingMoviesSuccessState(nowPlayingMovies: movie)));
     });
 

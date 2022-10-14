@@ -8,6 +8,7 @@ class TopRatedMoviesInitial extends TopRatedMoviesState {
   @override
   List<Object> get props => [];
 }
+
 class GetTopRatedMoviesLoadingState extends TopRatedMoviesState {
   @override
   List<Object?> get props => [];
@@ -15,19 +16,17 @@ class GetTopRatedMoviesLoadingState extends TopRatedMoviesState {
 
 class GetTopRatedMoviesSuccessState extends TopRatedMoviesState {
 
-    final List<Movie> topRatedMovies;
-  const GetTopRatedMoviesSuccessState({required this.topRatedMovies} );
+  final List<Movie> topRatedMovies;
+
+  const GetTopRatedMoviesSuccessState({required this.topRatedMovies});
+
   @override
   List<Object?> get props => [topRatedMovies];
 }
 
 class GetTopRatedMoviesErrorState extends TopRatedMoviesState {
-  final String msg;
-
-  const GetTopRatedMoviesErrorState(this.msg);
-
   @override
-  List<Object?> get props => [msg];
+  List<Object> get props => [];
 }
 
 class GetPopularMoviesLoadingState extends TopRatedMoviesState {

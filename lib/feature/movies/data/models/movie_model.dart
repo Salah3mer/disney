@@ -19,5 +19,5 @@ class MovieModel extends Movie {
         overview: json['overview'],
         genreIds: List<int>.from(json['genre_ids'].map((e) => e)) ,
         voteAverage: json['vote_average'],
-        releaseDate: json['release_date'],);
+        releaseDate: json['release_date']??'',);
 }

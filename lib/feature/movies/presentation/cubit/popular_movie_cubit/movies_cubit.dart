@@ -18,7 +18,7 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
      await getPopularMoviesUsecase.excute(page:page).then((resulte) {
       page++;
       emit(resulte.fold(
-              (failure) => GetPopularMoviesErrorState(failure.errorMassage),
+              (failure) => GetPopularMoviesErrorState(),
               (movie) {
               allMovies.addAll(movie);
                 return GetPopularMoviesSuccessState(popularMovies:movie);

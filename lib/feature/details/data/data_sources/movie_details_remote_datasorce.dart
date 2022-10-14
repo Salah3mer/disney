@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:disney/core/error/expceptin.dart';
 import 'package:disney/core/network/api_error_model.dart';
+import 'package:disney/core/network/dio_helper.dart';
 import 'package:disney/core/utils/api_constans.dart';
 import 'package:disney/feature/details/data/models/movie_cast_model.dart';
 import 'package:disney/feature/details/data/models/movie_details_model.dart';
@@ -16,38 +17,31 @@ abstract class BaseMovieDetailsRemoteDatasorce {
 }
 
 class MovieDetailsRemoteDatasorce implements BaseMovieDetailsRemoteDatasorce {
+  final DioHelper dioHelper;
+
+  MovieDetailsRemoteDatasorce({required this.dioHelper});
   @override
   Future<MovieDetailsModel> getMovieDetails(int movieId) async {
-    final response = await Dio().get(ApiConstans.movieDetails(movieId));
-    if (response.statusCode == 200) {
-      return MovieDetailsModel.fromJson(response.data);
-    } else {
-      throw ServerException(
-          apiErrorModel: ApiErrorModel.fromJson(response.data));
-    }
+    final response =
+        await dioHelper.getData(url: ApiConstans.movieDetails(movieId));
+
+    return MovieDetailsModel.fromJson(response.data);
   }
 
   @override
   Future<List<MovieCastModel>> getMovieCast(int movieId) async {
-    final response = await Dio().get(ApiConstans.movieCast(movieId));
-    if (response.statusCode == 200) {
-      return List<MovieCastModel>.from(
-          response.data['cast'].map((e) => MovieCastModel.fromJson(e)));
-    } else {
-      throw ServerException(
-          apiErrorModel: ApiErrorModel.fromJson(response.data));
-    }
+    final response =
+        await dioHelper.getData(url: ApiConstans.movieCast(movieId));
+
+    return List<MovieCastModel>.from(
+        response.data['cast'].map((e) => MovieCastModel.fromJson(e)));
   }
 
   @override
   Future<List<Movie>> getSimilerMovies(int movieId) async {
-    final response = await Dio().get(ApiConstans.similerMovies(movieId));
-    if (response.statusCode == 200) {
-      return List<Movie>.from(
-          response.data['results'].map((e) => MovieModel.fromJson(e)));
-    } else {
-      throw ServerException(
-          apiErrorModel: ApiErrorModel.fromJson(response.data));
-    }
+    final response =
+        await dioHelper.getData(url: ApiConstans.similerMovies(movieId));
+    return List<Movie>.from(
+        response.data['results'].map((e) => MovieModel.fromJson(e)));
   }
 }

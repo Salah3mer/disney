@@ -11,12 +11,12 @@ class SearchRepositor implements BaseSearchRepository {
   SearchRepositor({required this.baseSearchRemoteDataSorce});
 
   @override
-  Future<Either<Failure, List<Movie>>> search(String name) async {
-    final resulte = await baseSearchRemoteDataSorce.search(name);
+  Future<Either<Failure, List<Movie>>> search(String name,int page) async {
+    final resulte = await baseSearchRemoteDataSorce.search(name,page);
     try {
       return Right(resulte);
     } on ServerException catch (Failure) {
-      return Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+      return Left(ServerFailure());
     }
   }
 }

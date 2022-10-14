@@ -18,7 +18,7 @@ class TopRatedMoviesCubit extends Cubit<TopRatedMoviesState> {
       page++;
       print('PPPPPPPPPPPPPPPPPPPPPPPPP $page');
       emit(resulte.fold(
-              (failure) => GetTopRatedMoviesErrorState(failure.errorMassage),
+              (failure) => GetTopRatedMoviesErrorState(),
               (movie) {
                 print(movie.length);
                 allMovies.addAll(movie);

@@ -17,7 +17,7 @@ class MoviesRepository extends BaseMoviesRepository{
     try{
       return Right(resulte);
     } on ServerException catch(Failure){
-        return  Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+        return  Left(ServerFailure());
     }
   }
 
@@ -27,7 +27,7 @@ class MoviesRepository extends BaseMoviesRepository{
    try{
      return Right(resulte);
    }on ServerException catch(Failure){
-     return Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+     return Left(ServerFailure());
    }
   }
 
@@ -37,7 +37,7 @@ class MoviesRepository extends BaseMoviesRepository{
     try{
       return Right(resulte);
     }on ServerException catch(Failure){
-      return Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+      return Left(ServerFailure());
     }
 
   }
@@ -48,7 +48,7 @@ class MoviesRepository extends BaseMoviesRepository{
   try{
    return Right(resulte);
   }on ServerException catch(Failure){
-    return Left(ServerFailure(Failure.apiErrorModel.statusMessage));
+    return Left(ServerFailure());
   }
   }
 

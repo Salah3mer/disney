@@ -1,4 +1,5 @@
 import 'package:disney/core/bloc_observer.dart';
+import 'package:disney/core/network/dio_helper.dart';
 import 'package:disney/core/services/service_locator.dart' as di;
 import 'package:disney/feature/details/presentation/cubits/movie_details_cubit/movie_details_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/genres_cubit/genres_cubit.dart';
@@ -10,8 +11,8 @@ import 'package:disney/feature/movies/presentation/screens/movie_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() async{
-   WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   di.ServiceLocator().init();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
@@ -24,11 +25,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => di.sl<TopRatedMoviesCubit>()..getTopRated()),
-        BlocProvider(create: (context) => di.sl<NowPlayingMovieCubit>()..getNowPlayingMovies()),
+        BlocProvider(
+            create: (context) => di.sl<TopRatedMoviesCubit>()..getTopRated()),
+        BlocProvider(
+            create: (context) =>
+                di.sl<NowPlayingMovieCubit>()..getNowPlayingMovies()),
         BlocProvider(create: (context) => di.sl<GenresCubit>()..getGenres()),
-        BlocProvider(create: (context) => di.sl<PopularMoviesCubit>()..getPopularMovies()),
-
+        BlocProvider(
+            create: (context) =>
+                di.sl<PopularMoviesCubit>()..getPopularMovies()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

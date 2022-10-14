@@ -1,14 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
-  final String errorMassage;
-
-  const Failure(this.errorMassage);
-
   @override
-  List<Object> get props => [errorMassage];
+  List<Object> get props => [];
 }
 
-class ServerFailure extends Failure{
-  const ServerFailure(super.errorMassage);
+class ServerFailure extends Failure {
 }

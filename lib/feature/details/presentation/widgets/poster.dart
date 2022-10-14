@@ -117,6 +117,7 @@ class PosterWidget extends StatelessWidget {
           baseColor: Colors.grey[850]!,
           highlightColor: Colors.grey[800]!,
           child: Container(
+
             height: MediaQuery.of(context).size.height / 2,
             decoration: BoxDecoration(
               color: Colors.black,
@@ -125,9 +126,19 @@ class PosterWidget extends StatelessWidget {
           ),
         );
       } else {
-        return SizedBox(
-          height: 12,
+        return   Shimmer.fromColors(
+          baseColor: Colors.grey[850]!,
+          highlightColor: Colors.grey[800]!,
+          child: Container(
+
+            height: MediaQuery.of(context).size.height / 2,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
         );
+
       }
     });
   }

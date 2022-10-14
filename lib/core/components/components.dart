@@ -4,6 +4,7 @@ import 'package:disney/feature/details/presentation/screens/movie_details_screen
 import 'package:disney/feature/movies/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget bulidMovieCard({required List<Movie> movie, required int index}) =>
@@ -83,10 +84,12 @@ Widget bulidLoading() => SizedBox(
                     Container(
                       width: 120,
                       height: 180,
+                      color: Colors.black,
                     ),
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 120),
                       child: Container(
+                        color: Colors.black,
                         child: const Text(
                           'Where the Crawdads Sing',
                           style: TextStyle(
@@ -270,3 +273,29 @@ Widget bulidGridCard(List<Movie> movies,context,) =>  GridView.builder(
       ),
     ),
     itemCount: movies.length);
+
+Widget customFooter()=> CustomFooter(
+  builder: (BuildContext context, LoadStatus? mode) {
+    Widget body;
+    if (mode == LoadStatus.loading) {
+      body = const CircularProgressIndicator(
+        color: Colors.brown,
+      );
+    } else if (mode == LoadStatus.idle) {
+      body = const Text("");
+    } else if (mode == LoadStatus.failed) {
+      body = const Text("Load Failed!Click retry!",style: TextStyle(color: Colors.white),);
+    } else if (mode == LoadStatus.canLoading) {
+      body = const Text("release to load more",style: TextStyle(color: Colors.white),);
+    } else if (mode == LoadStatus.noMore) {
+      body = Center(child: const Text("No more data",style: TextStyle(color: Colors.white),));
+    } else {
+      body = const Text("Load more",style: TextStyle(color: Colors.white),);
+    }
+    return SizedBox(
+      height: 55.0,
+      width: double.infinity,
+      child: Center(child: body),
+    );
+  },
+);
