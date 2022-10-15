@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'My Movie App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.brown,
         ),
         home: const SplashScreen(),
       ),
