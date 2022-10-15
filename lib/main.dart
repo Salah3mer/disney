@@ -1,12 +1,10 @@
 import 'package:disney/core/bloc_observer.dart';
-import 'package:disney/core/network/dio_helper.dart';
 import 'package:disney/core/services/service_locator.dart' as di;
-import 'package:disney/feature/details/presentation/cubits/movie_details_cubit/movie_details_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/genres_cubit/genres_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/now_playing_movie_cubit/now_playing_movie_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/popular_movie_cubit/movies_cubit.dart';
 import 'package:disney/feature/movies/presentation/cubit/top_rated_movies_cubit/top_rated_movies_cubit.dart';
-import 'package:disney/feature/movies/presentation/screens/movie_screen.dart';
+import 'package:disney/feature/splash/presentation/screens/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const MovieScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
