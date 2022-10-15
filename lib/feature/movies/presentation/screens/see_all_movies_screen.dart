@@ -38,9 +38,31 @@ class SeeAllMoviesScreen extends StatelessWidget {
               builder: (context, state) {
             {
               return Padding(
-                padding: EdgeInsets.all(15),
-                child: customFooter(),
-              );
+                  padding: EdgeInsets.all(15),
+                  child: SmartRefresher(
+                    footer: customFooter(),
+                    onRefresh: () async {
+                      await Future.delayed(const Duration(milliseconds: 1000));
+                      _refreshController.refreshCompleted();
+                    },
+                    onLoading: () async {
+                      await Future.delayed(const Duration(milliseconds: 1000));
+                      // ignore: use_build_context_synchronously
+                      BlocProvider.of<PopularMoviesCubit>(context).getPopularMovies();
+                      _refreshController.loadComplete();
+                    },
+                    enablePullUp: true,
+                    enablePullDown: true,
+                    controller: _refreshController,
+                    child: SingleChildScrollView(
+                        controller: scroll,
+                        child: Column(children: [
+                          bulidGridCard(
+                              BlocProvider.of<PopularMoviesCubit>(context)
+                                  .allMovies,
+                              context),
+                        ])),
+                  ));
             }
           }));
     } else {
